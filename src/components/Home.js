@@ -16,7 +16,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export function Home({navigation}) {
   const [currentSelected, setCurrentSelected] = useState([0]);
-
   const renderCategories = ({item, index}) => {
     return (
       <TouchableOpacity
@@ -63,7 +62,18 @@ export function Home({navigation}) {
     return (
       <TouchableOpacity
         key={index}
-        onPress={() => navigation.push('Details')}
+        onPress={() =>
+          navigation.push('Details', {
+            name: data.name,
+            price: data.price,
+            image: data.image,
+            size: data.size,
+            crust: data.crust,
+            delivery: data.delivery,
+            ingredients: data.ingredients,
+            isTopOfTheWeek: data.isTopOfTheWeek,
+          })
+        }
         style={styles.containerMainItem}>
         <View style={styles.containerInfoItem}>
           <View style={styles.subContainerInfoItem}>
