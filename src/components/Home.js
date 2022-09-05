@@ -16,11 +16,24 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export function Home({navigation}) {
   const [currentSelected, setCurrentSelected] = useState([0]);
+  const [flagCategoryPizza, setFlagCategoryPizza] = useState(false);
+
+  function changeFlagCategoryPizza(name) {
+    if (name === 'Pizza') {
+      setFlagCategoryPizza(true);
+    } else {
+      setFlagCategoryPizza(false);
+    }
+  }
+
   const renderCategories = ({item, index}) => {
     return (
       <TouchableOpacity
         activeOpacity={0.9}
-        onPress={() => setCurrentSelected(index)}>
+        onPress={() => {
+          setCurrentSelected(index);
+          changeFlagCategoryPizza(item.name);
+        }}>
         <View
           style={[
             styles.containerItem,
@@ -64,6 +77,7 @@ export function Home({navigation}) {
         key={index}
         onPress={() =>
           navigation.push('Details', {
+            flagCategoryPizza,
             name: data.name,
             price: data.price,
             image: data.image,

@@ -13,6 +13,7 @@ import {COLORS} from '../database/items';
 
 export function Details({route, navigation}) {
   const {
+    flagCategoryPizza,
     name,
     price,
     image,
@@ -57,7 +58,10 @@ export function Details({route, navigation}) {
             <Text style={styles.info}>{delivery} min</Text>
           </View>
         </View>
-        <View style={styles.containerImg}>
+        <View
+          style={
+            flagCategoryPizza ? styles.containerImgPizza : styles.containerImg
+          }>
           <Image source={image} style={styles.img} />
         </View>
       </View>
@@ -157,7 +161,12 @@ const styles = StyleSheet.create({
   },
   containerImg: {
     width: 350,
-    height: 250,
+    height: 350,
+  },
+  containerImgPizza: {
+    width: 350,
+    height: 265,
+    marginLeft: 32,
   },
   img: {
     width: '100%',
